@@ -43,7 +43,7 @@ moveShelf = (book, shelf) =>{
       <Route exact path="/search" render={()=>(
         <SearchPage 
         moveShelf={this.moveShelf}
-        books={this.props.books}x
+        books={this.state.books}
         />
       )}/>       
 
