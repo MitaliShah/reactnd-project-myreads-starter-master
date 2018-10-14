@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchPage from './SearchPage';
 import MainPage from './MainPage';
+import {Route} from 'react-router-dom';
 
 import * as BooksAPI from './BooksAPI'
 import './App.css'
@@ -9,6 +10,7 @@ class BooksApp extends React.Component {
   state ={
   books:[]
   }
+
 //Separate method to manage all the books here
 manageBooks(){
   BooksAPI.getAll().then((books) => {
@@ -21,7 +23,7 @@ componentDidMount(){
   this.manageBooks()
 }
 
-//Updates the books on the shelves
+//Updates books on the shelves
 moveShelf = (book, shelf) =>{
   BooksAPI.update(book, shelf).then(() => {
     this.manageBooks()
@@ -30,8 +32,21 @@ moveShelf = (book, shelf) =>{
 
   render() {    
     return (
-      <div className="app">       
-        <SearchPage />
+      <div className="app">
+      <Route exact path="/" render={()=>(
+        <MainPage
+        books={this.state.books}
+        moveShelf={this.moveShelf}
+        />
+      )}/>
+
+      <Route exact path="/search" render={()=>(
+        <SearchPage 
+        moveShelf={this.moveShelf}
+        books={this.props.books}x
+        />
+      )}/>       
+
       </div>
     )
   }
