@@ -51,19 +51,19 @@ updateSearchedBooks =(query)=>{
             <div className="search-books-results">
               <ol className="books-grid">
 				      {
-                  this.state.searchedBooks.map(searchedBooks => {
+                  this.state.searchedBooks.map(searchedBook => {
                     let shelf ="none";
 
                     this.props.books.map(book =>(
-                      book.id === searchedBooks.id ?
+                      book.id === searchedBook.id ?
                       shelf = book.shelf : ''
                     ));
 
                       
                     return(
-                      <li key={searchedBooks.id}>
+                      <li key={searchedBook.id}>
 					        <Book 
-                  book={searchedBooks}
+                  book={searchedBook}
                   moveShelf={this.props.moveShelf}
                   currentShelf={shelf}
 					        />
