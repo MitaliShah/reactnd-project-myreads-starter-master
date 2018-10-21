@@ -20,7 +20,7 @@ this.setState({
 updateSearchedBooks =(query)=>{
   if(query){
     BooksAPI.search(query).then((searchedBooks)=> {
-      this.setState({searchedBooks})
+      this.setState((Array.isArray(searchedBooks))?{searchedBooks}:{ searchedBooks: []})
         })
     .catch(() => this.setState({ searchedBooks: [] })); 
     }else{
